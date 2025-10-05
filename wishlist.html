@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#C2185B">
+  <title>My Wishlist - Priya's Collection</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#C2185B',
+            accent: '#FF7043',
+            background: '#FFF8F1'
+          },
+          fontFamily: {
+            heading: ['Playfair Display', 'serif'],
+            body: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="font-body bg-background min-h-screen">
+
+  <header class="sticky-header">
+    <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="/" class="text-gray-700">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </a>
+        <h1 class="text-2xl font-heading font-bold text-primary">My Wishlist</h1>
+      </div>
+      <button id="logoutButton" class="text-sm font-semibold text-primary">Logout</button>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-8">
+    <div id="wishlistContainer" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    </div>
+
+    <div id="emptyState" class="empty-state" style="display: none;">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+      </svg>
+      <p class="text-2xl font-heading font-semibold text-gray-600 mb-2">Your wishlist is empty</p>
+      <p class="text-gray-500 mb-6">Start adding your favorite outfits to your wishlist</p>
+      <a href="/" class="btn-primary inline-block">Explore Collection</a>
+    </div>
+  </main>
+
+  <script type="module" src="/js/wishlist.js"></script>
+</body>
+</html>

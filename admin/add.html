@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#C2185B">
+  <title>Add Product - Admin Panel</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#C2185B',
+            accent: '#FF7043',
+            background: '#FFF8F1'
+          },
+          fontFamily: {
+            heading: ['Playfair Display', 'serif'],
+            body: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="font-body bg-background min-h-screen">
+
+  <header class="sticky-header">
+    <div class="container mx-auto px-4 py-4 flex items-center gap-3">
+      <a href="/admin/dashboard.html" class="text-gray-700">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+      </a>
+      <h1 class="text-2xl font-heading font-bold text-primary">Add New Product</h1>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-8 max-w-2xl">
+    <div class="card p-6">
+      <form id="addProductForm">
+        <div class="mb-4">
+          <label for="name" class="block text-sm font-semibold mb-2">Product Name *</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            placeholder="e.g., Banarasi Silk Saree"
+            class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary focus:outline-none"
+          >
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div>
+            <label for="category" class="block text-sm font-semibold mb-2">Category *</label>
+            <select id="category" name="category" required class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary focus:outline-none">
+              <option value="">Select category</option>
+              <option value="Saree">Saree</option>
+              <option value="Kurti">Kurti</option>
+              <option value="Lehenga">Lehenga</option>
+              <option value="Suit">Suit</option>
+              <option value="Dupatta">Dupatta</option>
+              <option value="Palazzo">Palazzo</option>
+              <option value="Sharara">Sharara</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="fabric" class="block text-sm font-semibold mb-2">Fabric</label>
+            <select id="fabric" name="fabric" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary focus:outline-none">
+              <option value="">Select fabric</option>
+              <option value="Silk">Silk</option>
+              <option value="Cotton">Cotton</option>
+              <option value="Georgette">Georgette</option>
+              <option value="Chiffon">Chiffon</option>
+              <option value="Chanderi">Chanderi</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div>
+            <label for="price" class="block text-sm font-semibold mb-2">Price (₹) *</label>
+            <input
+              type="number"
+              id="price"
+              name="price"
+              required
+              min="0"
+              step="0.01"
+              placeholder="1999"
+              class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary focus:outline-none"
+            >
+          </div>
+
+          <div>
+            <label for="discount" class="block text-sm font-semibold mb-2">Discount (%)</label>
+            <input
+              type="number"
+              id="discount"
+              name="discount"
+              min="0"
+              max="100"
+              placeholder="20"
+              class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary focus:outline-none"
+            >
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label for="description" class="block text-sm font-semibold mb-2">Description *</label>
+          <textarea
+            id="description"
+            name="description"
+            required
+            rows="4"
+            placeholder="Detailed product description..."
+            class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary focus:outline-none"
+          ></textarea>
+        </div>
+
+        <div class="mb-4">
+          <label for="images" class="block text-sm font-semibold mb-2">Image URLs (one per line) *</label>
+          <textarea
+            id="images"
+            name="images"
+            required
+            rows="3"
+            placeholder="https://example.com/image1.jpg&#10;https://example.com/image2.jpg"
+            class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary focus:outline-none font-mono text-sm"
+          ></textarea>
+        </div>
+
+        <div class="mb-4">
+          <label for="colors" class="block text-sm font-semibold mb-2">Colors (comma-separated)</label>
+          <input
+            type="text"
+            id="colors"
+            name="colors"
+            placeholder="Rani Pink, Royal Blue, Maroon"
+            class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary focus:outline-none"
+          >
+        </div>
+
+        <div class="mb-4">
+          <label for="sizes" class="block text-sm font-semibold mb-2">Sizes (comma-separated)</label>
+          <input
+            type="text"
+            id="sizes"
+            name="sizes"
+            placeholder="S, M, L, XL"
+            value="S, M, L, XL"
+            class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary focus:outline-none"
+          >
+        </div>
+
+        <div class="mb-4">
+          <label for="rating" class="block text-sm font-semibold mb-2">Rating (0-5)</label>
+          <input
+            type="number"
+            id="rating"
+            name="rating"
+            min="0"
+            max="5"
+            step="0.1"
+            value="4.5"
+            class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary focus:outline-none"
+          >
+        </div>
+
+        <div class="mb-6 space-y-3">
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" id="isNewArrival" name="isNewArrival" class="w-5 h-5 text-primary">
+            <span class="font-semibold">Mark as New Arrival</span>
+          </label>
+
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" id="isFestive" name="isFestive" class="w-5 h-5 text-primary">
+            <span class="font-semibold">Mark as Festive Collection</span>
+          </label>
+
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" id="isTrending" name="isTrending" class="w-5 h-5 text-primary">
+            <span class="font-semibold">Mark as Trending</span>
+          </label>
+        </div>
+
+        <div id="errorMessage" class="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm" style="display: none;"></div>
+
+        <div class="flex gap-3">
+          <button type="submit" class="btn-primary flex-1" id="submitBtn">
+            <span id="submitBtnText">Add Product</span>
+            <span id="submitBtnLoader" class="loading" style="display: none;"></span>
+          </button>
+          <a href="/admin/dashboard.html" class="btn-secondary flex-1 text-center">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <script type="module" src="/js/admin-add.js"></script>
+</body>
+</html>

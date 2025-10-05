@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#C2185B">
+  <title>Admin Dashboard - Priya's Collection</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#C2185B',
+            accent: '#FF7043',
+            background: '#FFF8F1'
+          },
+          fontFamily: {
+            heading: ['Playfair Display', 'serif'],
+            body: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="font-body bg-background min-h-screen">
+
+  <header class="sticky-header">
+    <div class="container mx-auto px-4 py-4">
+      <div class="flex items-center justify-between">
+        <h1 class="text-2xl font-heading font-bold text-primary">Admin Dashboard</h1>
+        <div class="flex items-center gap-3">
+          <a href="/" class="text-sm font-semibold text-gray-600 hover:text-primary">View Store</a>
+          <button id="logoutButton" class="text-sm font-semibold text-primary">Logout</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-8">
+    <div class="mb-6">
+      <a href="/admin/add.html" class="btn-primary inline-flex items-center gap-2">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+        </svg>
+        Add New Product
+      </a>
+    </div>
+
+    <div class="card p-6">
+      <h2 class="text-xl font-heading font-bold mb-4">All Products</h2>
+
+      <div class="overflow-x-auto">
+        <table class="w-full" id="productsTable">
+          <thead>
+            <tr class="border-b-2 border-gray-200">
+              <th class="text-left py-3 px-2">Image</th>
+              <th class="text-left py-3 px-2">Name</th>
+              <th class="text-left py-3 px-2">Category</th>
+              <th class="text-left py-3 px-2">Price</th>
+              <th class="text-left py-3 px-2">Discount</th>
+              <th class="text-right py-3 px-2">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="productsTableBody">
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="/js/admin-dashboard.js"></script>
+</body>
+</html>

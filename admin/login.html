@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#C2185B">
+  <title>Admin Login - Priya's Collection</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#C2185B',
+            accent: '#FF7043',
+            background: '#FFF8F1'
+          },
+          fontFamily: {
+            heading: ['Playfair Display', 'serif'],
+            body: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="font-body bg-background min-h-screen flex items-center justify-center p-4">
+
+  <div class="card max-w-md w-full p-8 animate-fade-in-up">
+    <div class="text-center mb-8">
+      <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+        </svg>
+      </div>
+      <h1 class="text-3xl font-heading font-bold text-primary mb-2">Admin Panel</h1>
+      <p class="text-gray-600">Authorized access only</p>
+    </div>
+
+    <form id="adminLoginForm">
+      <div class="mb-4">
+        <label for="email" class="block text-sm font-semibold mb-2">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          placeholder="admin@example.com"
+          class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary focus:outline-none"
+        >
+      </div>
+
+      <div class="mb-6">
+        <label for="password" class="block text-sm font-semibold mb-2">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          required
+          placeholder="••••••••"
+          class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary focus:outline-none"
+        >
+      </div>
+
+      <div id="errorMessage" class="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm" style="display: none;"></div>
+
+      <button type="submit" class="btn-primary w-full mb-4" id="loginBtn">
+        <span id="loginBtnText">Login to Admin Panel</span>
+        <span id="loginBtnLoader" class="loading" style="display: none;"></span>
+      </button>
+
+      <div class="text-center">
+        <a href="/" class="text-gray-500 text-sm hover:text-primary">← Back to Home</a>
+      </div>
+    </form>
+  </div>
+
+  <script type="module" src="/js/admin-login.js"></script>
+</body>
+</html>

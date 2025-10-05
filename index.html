@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Priya's Collection - Beautiful Indian Women's Fashion Catalogue">
+  <meta name="theme-color" content="#C2185B">
+  <title>Priya's Collection - Indian Fashion Catalogue</title>
+
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" type="image/svg+xml" href="/assets/icons/icon-192.svg">
+  <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#C2185B',
+            accent: '#FF7043',
+            background: '#FFF8F1'
+          },
+          fontFamily: {
+            heading: ['Playfair Display', 'serif'],
+            body: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="font-body">
+
+  <header class="sticky-header">
+    <div class="container mx-auto px-4 py-3">
+      <div class="flex items-center justify-between mb-3">
+        <h1 class="text-2xl font-heading font-bold text-primary">Priya's Collection</h1>
+        <div class="flex items-center gap-3">
+          <button id="wishlistNavBtn" data-auth-required class="relative" style="display: none;">
+            <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+            <span id="wishlistCount" class="absolute -top-2 -right-2 bg-primary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+          </button>
+          <button id="loginButton" class="text-sm font-semibold text-primary">Login</button>
+          <button id="logoutButton" class="text-sm font-semibold text-primary" style="display: none;">Logout</button>
+        </div>
+      </div>
+
+      <div class="relative">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search outfits..."
+          class="w-full py-3 px-4 pr-12 rounded-full border-2 border-gray-200 focus:border-primary focus:outline-none"
+        >
+        <svg class="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="relative hero-section">
+      <div class="hero-carousel flex overflow-x-auto snap-x snap-mandatory" id="heroCarousel">
+        <div class="hero-slide w-full flex-shrink-0 snap-start h-80 md:h-96 bg-gradient-to-r from-pink-600 to-rose-500 flex items-center justify-center text-white">
+          <div class="text-center px-4">
+            <h2 class="text-4xl md:text-5xl font-heading font-bold mb-2">Festive Picks</h2>
+            <p class="text-lg md:text-xl opacity-90">Celebrate in Style</p>
+          </div>
+        </div>
+        <div class="hero-slide w-full flex-shrink-0 snap-start h-80 md:h-96 bg-gradient-to-r from-orange-500 to-amber-400 flex items-center justify-center text-white">
+          <div class="text-center px-4">
+            <h2 class="text-4xl md:text-5xl font-heading font-bold mb-2">New Arrivals</h2>
+            <p class="text-lg md:text-xl opacity-90">Fresh Designs Just In</p>
+          </div>
+        </div>
+        <div class="hero-slide w-full flex-shrink-0 snap-start h-80 md:h-96 bg-gradient-to-r from-emerald-600 to-teal-500 flex items-center justify-center text-white">
+          <div class="text-center px-4">
+            <h2 class="text-4xl md:text-5xl font-bold font-heading mb-2">Elegant Sarees</h2>
+            <p class="text-lg md:text-xl opacity-90">Timeless Beauty</p>
+          </div>
+        </div>
+        <div class="hero-slide w-full flex-shrink-0 snap-start h-80 md:h-96 bg-gradient-to-r from-violet-600 to-fuchsia-500 flex items-center justify-center text-white">
+          <div class="text-center px-4">
+            <h2 class="text-4xl md:text-5xl font-bold font-heading mb-2">Trending Now</h2>
+            <p class="text-lg md:text-xl opacity-90">Most Loved Outfits</p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-indicators absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10" id="carouselDots">
+      </div>
+    </section>
+
+    <section class="container mx-auto px-4 py-6 md:py-8">
+      <h2 class="text-2xl md:text-3xl font-heading font-bold mb-4">Shop by Category</h2>
+      <div class="horizontal-scroll-container relative">
+        <div class="horizontal-scroll flex gap-3 overflow-x-auto pb-4" id="categoriesScroll">
+          <div class="category-chip" data-category="Kurti">
+            <div class="category-thumbnail">
+              <span class="text-2xl">👗</span>
+            </div>
+            <span class="category-name">Kurti</span>
+          </div>
+          <div class="category-chip" data-category="Kurta Set">
+            <div class="category-thumbnail">
+              <span class="text-2xl">👚</span>
+            </div>
+            <span class="category-name">Kurta Sets</span>
+          </div>
+          <div class="category-chip" data-category="Saree">
+            <div class="category-thumbnail">
+              <span class="text-2xl">🥻</span>
+            </div>
+            <span class="category-name">Sarees</span>
+          </div>
+          <div class="category-chip" data-category="Draping Saree">
+            <div class="category-thumbnail">
+              <span class="text-2xl">💃</span>
+            </div>
+            <span class="category-name">Draping Sarees</span>
+          </div>
+          <div class="category-chip" data-category="Ready Saree">
+            <div class="category-thumbnail">
+              <span class="text-2xl">✨</span>
+            </div>
+            <span class="category-name">Ready-to-Wear</span>
+          </div>
+          <div class="category-chip" data-category="Lehenga">
+            <div class="category-thumbnail">
+              <span class="text-2xl">👘</span>
+            </div>
+            <span class="category-name">Lehengas</span>
+          </div>
+          <div class="category-chip" data-category="Palazzo">
+            <div class="category-thumbnail">
+              <span class="text-2xl">��</span>
+            </div>
+            <span class="category-name">Palazzos</span>
+          </div>
+          <div class="category-chip" data-category="Indo Western">
+            <div class="category-thumbnail">
+              <span class="text-2xl">🎭</span>
+            </div>
+            <span class="category-name">Indo-Western</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container mx-auto px-4 py-6 md:py-8">
+      <h2 class="text-2xl md:text-3xl font-heading font-bold mb-4">Shop by Fabric</h2>
+      <div class="horizontal-scroll-container relative">
+        <div class="horizontal-scroll flex gap-3 overflow-x-auto pb-4" id="fabricsScroll">
+          <div class="fabric-chip" data-fabric="Cotton">
+            <div class="fabric-texture">🌿</div>
+            <span class="fabric-name">Cotton</span>
+          </div>
+          <div class="fabric-chip" data-fabric="Silk">
+            <div class="fabric-texture">✨</div>
+            <span class="fabric-name">Silk</span>
+          </div>
+          <div class="fabric-chip" data-fabric="Chiffon">
+            <div class="fabric-texture">💫</div>
+            <span class="fabric-name">Chiffon</span>
+          </div>
+          <div class="fabric-chip" data-fabric="Georgette">
+            <div class="fabric-texture">🌸</div>
+            <span class="fabric-name">Georgette</span>
+          </div>
+          <div class="fabric-chip" data-fabric="Linen">
+            <div class="fabric-texture">🍃</div>
+            <span class="fabric-name">Linen</span>
+          </div>
+          <div class="fabric-chip" data-fabric="Viscose">
+            <div class="fabric-texture">🎀</div>
+            <span class="fabric-name">Viscose</span>
+          </div>
+          <div class="fabric-chip" data-fabric="Satin">
+            <div class="fabric-texture">💎</div>
+            <span class="fabric-name">Satin</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="container mx-auto px-4 py-6 md:py-8">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-2xl md:text-3xl font-heading font-bold" id="productSectionTitle">All Products</h2>
+        <button id="clearFilters" class="text-sm text-gray-600 hover:text-primary transition-colors" style="display: none;">Clear Filters ✕</button>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="allProductsContainer">
+      </div>
+      <div id="loadMoreContainer" class="text-center py-8" style="display: none;">
+        <button id="loadMoreBtn" class="btn-primary">Load More</button>
+      </div>
+    </section>
+  </main>
+
+  <div id="productModal" class="modal">
+    <div class="modal-content">
+    </div>
+  </div>
+
+  <script type="module" src="/js/home.js"></script>
+  <script type="module" src="/js/sw-register.js"></script>
+</body>
+</html>

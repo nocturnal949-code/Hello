@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#C2185B">
+  <title>Sign Up - Priya's Collection</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#C2185B',
+            accent: '#FF7043',
+            background: '#FFF8F1'
+          },
+          fontFamily: {
+            heading: ['Playfair Display', 'serif'],
+            body: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="font-body bg-background min-h-screen flex items-center justify-center p-4">
+
+  <div class="card max-w-md w-full p-8 animate-fade-in-up">
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-heading font-bold text-primary mb-2">Create Account</h1>
+      <p class="text-gray-600">Join Priya's Collection today</p>
+    </div>
+
+    <form id="signupForm">
+      <div class="mb-4">
+        <label for="email" class="block text-sm font-semibold mb-2">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          placeholder="your@email.com"
+          class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary focus:outline-none"
+        >
+      </div>
+
+      <div class="mb-4">
+        <label for="password" class="block text-sm font-semibold mb-2">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          required
+          minlength="6"
+          placeholder="••••••••"
+          class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary focus:outline-none"
+        >
+        <p class="text-xs text-gray-500 mt-1">At least 6 characters</p>
+      </div>
+
+      <div class="mb-6">
+        <label for="confirmPassword" class="block text-sm font-semibold mb-2">Confirm Password</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          name="confirmPassword"
+          required
+          placeholder="••••••••"
+          class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary focus:outline-none"
+        >
+      </div>
+
+      <div id="errorMessage" class="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm" style="display: none;"></div>
+
+      <button type="submit" class="btn-primary w-full mb-4" id="signupBtn">
+        <span id="signupBtnText">Create Account</span>
+        <span id="signupBtnLoader" class="loading" style="display: none;"></span>
+      </button>
+
+      <div class="text-center">
+        <p class="text-gray-600 text-sm">
+          Already have an account?
+          <a href="/login.html" class="text-primary font-semibold hover:underline">Login</a>
+        </p>
+      </div>
+
+      <div class="text-center mt-4">
+        <a href="/" class="text-gray-500 text-sm hover:text-primary">← Back to Home</a>
+      </div>
+    </form>
+  </div>
+
+  <script type="module" src="/js/signup.js"></script>
+</body>
+</html>

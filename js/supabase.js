@@ -102,10 +102,15 @@ export async function isInWishlist(productId) {
   return !!data;
 }
 
-export async function signUp(email, password) {
+export async function signUp(email, password, role = 'user') {
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
+    options: {
+      data: {
+        role: role
+      }
+    }
   });
 
   return { data, error };
@@ -128,6 +133,12 @@ export async function signOut() {
 export async function getCurrentUser() {
   const { data: { user } } = await supabase.auth.getUser();
   return user;
+}
+
+export async function getUserRole() {
+  const user = await getCurrentUser();
+  if (!user) return null;
+  return user.user_metadata?.role || 'user';
 }
 
 export async function isAdmin() {

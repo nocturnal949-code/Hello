@@ -540,3 +540,75 @@ select:focus {
     min-height: 320px;
   }
 }
+
+.btn-primary:disabled,
+.btn-secondary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.card {
+  border-radius: 1.5rem;
+}
+
+.product-card {
+  border-radius: 1.5rem;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus {
+  transform: translateY(-1px);
+}
+
+@media (hover: hover) {
+  .category-chip:hover,
+  .fabric-chip:hover {
+    background: linear-gradient(135deg, var(--primary) 0%, #9C1448 100%);
+    color: white;
+  }
+
+  .category-chip:hover .category-thumbnail,
+  .fabric-chip:hover .fabric-texture {
+    background: rgba(255, 255, 255, 0.2);
+  }
+}
+
+.wishlist-btn:active {
+  transform: scale(0.95);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.loading-pulse {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@media (max-width: 420px) {
+  .card {
+    border-radius: 1rem;
+  }
+
+  .product-card {
+    border-radius: 1rem;
+  }
+
+  .hero-slide h2 {
+    font-size: 2rem;
+  }
+
+  .hero-slide p {
+    font-size: 1rem;
+  }
+}

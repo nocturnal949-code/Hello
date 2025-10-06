@@ -1,22 +1,35 @@
 # Priya's Collection - Fashion Catalogue PWA
 
-A mobile-first Progressive Web App for browsing beautiful Indian women's fashion. This is a browse-only catalogue featuring sarees, lehengas, kurtis, and more.
+An enterprise-grade, mobile-first Progressive Web App for browsing beautiful Indian women's fashion. This is a Flipkart-style browse-only catalogue featuring sarees, lehengas, kurtis, and more.
 
 ## Features
 
 ### Customer Features
-- Browse products by category and fabric
-- Search functionality
-- Product detail modal with image carousel
-- Wishlist functionality (requires login)
-- User authentication (email/password)
-- Share outfits using Web Share API
-- Responsive mobile-first design
+- Fullscreen splash screen with smooth fade-out transition
+- Hero carousel with auto-rotation
+- Infinite horizontal scrolling for categories and fabrics
+- Browse products by 8 categories and 7 fabric types
+- Advanced search functionality
+- Flipkart-style product cards with:
+  - Discount badges
+  - Stock indicators
+  - Wishlist toggle
+  - Hover animations
+- Product Detail Modal with:
+  - Swipeable image carousel
+  - Size selection
+  - Color swatches
+  - Fabric tags
+  - Expand/collapse description
+  - Share functionality
+- Wishlist system with Supabase persistence
+- Role-based authentication (User/Admin)
+- Responsive design (mobile-first, 420px+)
 - PWA installable on mobile devices
 
 ### Admin Features
-- Secure admin login
-- Product CRUD operations (Create, Read, Update, Delete)
+- Secure role-based admin login
+- Product CRUD operations
 - Dashboard with product management
 - Add/Edit product forms with validation
 
@@ -157,9 +170,11 @@ VALUES ('user-uuid-here');
 - Product detail modal
 
 ### Authentication
-- `/login.html` - Customer login
-- `/signup.html` - Customer registration
+- `/splash.html` - Fullscreen splash screen (shows once on load)
+- `/login.html` - Login with role selection (User/Admin)
+- `/signup.html` - Registration with role selection
 - Email/password authentication
+- Role-based redirection after login
 
 ### Wishlist (/wishlist.html)
 - View saved products
@@ -182,9 +197,11 @@ Located in `js/supabase.js`:
 - `getWishlist()` - Get user's wishlist
 - `addToWishlist(productId)` - Add to wishlist
 - `removeFromWishlist(productId)` - Remove from wishlist
-- `signUp(email, password)` - Create account
+- `signUp(email, password, role)` - Create account with role
 - `signIn(email, password)` - Login
 - `signOut()` - Logout
+- `getCurrentUser()` - Get current user
+- `getUserRole()` - Get user's role (user/admin)
 - `createProduct(product)` - Add product (admin)
 - `updateProduct(id, product)` - Update product (admin)
 - `deleteProduct(id)` - Delete product (admin)
@@ -195,13 +212,44 @@ Located in `js/supabase.js`:
 - Service Worker support for PWA features
 - Web Share API for sharing (graceful fallback)
 
+## Categories & Fabrics
+
+### Categories
+- Kurti
+- Kurta Sets
+- Sarees
+- Draping Saree
+- Ready-to-Wear Saree
+- Palazzo
+- Lehengas
+- Indo Western Dresses
+
+### Fabrics
+- Cotton
+- Silk
+- Chiffon
+- Georgette
+- Linen
+- Viscose
+- Satin
+
+## Seeding Sample Data
+
+Visit `/seed-database.html` to populate the database with 12 sample products across all categories and fabrics. The seed data includes:
+- Product images from Pexels
+- Realistic pricing with discounts
+- Multiple sizes and colors
+- Stock indicators
+- Ratings
+
 ## Notes
 
 - This is a browse-only catalogue (no checkout/payment)
-- Sample product data is included in the database migration
-- Images use placeholder URLs from Pexels
+- Sample product data available via seed-database.html
+- Images use stock photos from Pexels
 - Service worker provides installability only (no offline caching)
 - All database operations use Supabase
+- Role-based authentication with user metadata storage
 
 ## Future Enhancements
 

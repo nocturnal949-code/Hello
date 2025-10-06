@@ -48,7 +48,7 @@
         >
       </div>
 
-      <div class="mb-6">
+      <div class="mb-4">
         <label for="password" class="block text-sm font-semibold mb-2">Password</label>
         <input
           type="password"
@@ -58,6 +58,20 @@
           placeholder="••••••••"
           class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary focus:outline-none"
         >
+      </div>
+
+      <div class="mb-6">
+        <label for="role" class="block text-sm font-semibold mb-2">Select Role</label>
+        <select
+          id="role"
+          name="role"
+          required
+          class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-primary focus:outline-none"
+        >
+          <option value="">Choose your role</option>
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+        </select>
       </div>
 
       <div id="errorMessage" class="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm" style="display: none;"></div>

@@ -20,10 +20,12 @@ Visit `http://localhost:5173`
 ## 📍 Important URLs
 
 ### Customer Pages
+- **Splash Screen**: `/splash.html` (auto-redirects after 2s)
 - **Homepage**: `/`
-- **Login**: `/login.html`
-- **Sign Up**: `/signup.html`
+- **Login**: `/login.html` (with role selection)
+- **Sign Up**: `/signup.html` (with role selection)
 - **Wishlist**: `/wishlist.html`
+- **Seed Data**: `/seed-database.html`
 
 ### Admin Pages
 - **Admin Login**: `/admin/login.html`
@@ -33,14 +35,23 @@ Visit `http://localhost:5173`
 
 ---
 
-## 👤 Create Admin User
+## 👤 Create Users
 
-1. Sign up at `/signup.html`
-2. Get user ID from Supabase Dashboard
-3. Run in Supabase SQL Editor:
-```sql
-INSERT INTO admin_users (user_id) VALUES ('your-user-id');
-```
+### Regular User
+1. Go to `/signup.html`
+2. Fill in email and password
+3. Select **"User"** as role
+4. Create account
+5. You'll be redirected to homepage
+
+### Admin User
+1. Go to `/signup.html`
+2. Fill in email and password
+3. Select **"Admin"** as role
+4. Create account
+5. You'll be redirected to admin dashboard
+
+**Note**: Role is stored in user metadata, no manual database insertion needed!
 
 ---
 
@@ -54,12 +65,19 @@ INSERT INTO admin_users (user_id) VALUES ('your-user-id');
 
 ## 🎨 Key Features
 
-✅ Browse fashion catalogue
-✅ Search & filter products
-✅ Wishlist (requires login)
-✅ Admin panel (CRUD operations)
+✅ Fullscreen splash screen with fade animation
+✅ Hero carousel with auto-rotation
+✅ Infinite horizontal scrolls for categories & fabrics
+✅ 8 categories + 7 fabric types
+✅ Flipkart-style product cards
+✅ Discount badges & stock indicators
+✅ Swipeable image carousel in PDP
+✅ Size selection & color swatches
+✅ Wishlist with Supabase persistence
+✅ Role-based authentication (User/Admin)
+✅ Product sharing via Web Share API
 ✅ PWA installable
-✅ Mobile-first design
+✅ Mobile-first responsive design (420px+)
 
 ---
 
@@ -112,11 +130,14 @@ Output in `dist/` folder
 
 1. ✅ Install dependencies
 2. ✅ Run development server
-3. ✅ Create user account
-4. ✅ Make user an admin
-5. ✅ Add products via admin panel
-6. ✅ Test wishlist functionality
-7. ✅ Install as PWA on mobile
+3. ✅ Visit `/seed-database.html` to load sample products
+4. ✅ Create user account (select role: User or Admin)
+5. ✅ Browse products, filter by category/fabric
+6. ✅ Add items to wishlist
+7. ✅ Test product detail modal with image carousel
+8. ✅ Share products using share button
+9. ✅ (Admin) Add/edit/delete products
+10. ✅ Install as PWA on mobile
 
 ---
 

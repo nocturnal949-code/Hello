@@ -13,8 +13,15 @@ signupForm.addEventListener('submit', async (e) => {
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
   const confirmPassword = document.getElementById('confirmPassword').value;
+  const role = document.getElementById('role').value;
 
   errorMessage.style.display = 'none';
+
+  if (!role) {
+    errorMessage.textContent = 'Please select a role';
+    errorMessage.style.display = 'block';
+    return;
+  }
 
   if (password !== confirmPassword) {
     errorMessage.textContent = 'Passwords do not match';
@@ -32,7 +39,7 @@ signupForm.addEventListener('submit', async (e) => {
   signupBtnText.style.display = 'none';
   signupBtnLoader.style.display = 'inline-block';
 
-  const { data, error } = await signUp(email, password);
+  const { data, error } = await signUp(email, password, role);
 
   if (error) {
     errorMessage.textContent = error.message || 'Error creating account';
@@ -45,6 +52,10 @@ signupForm.addEventListener('submit', async (e) => {
 
   showToast('Account created successfully! Logging you in...');
   setTimeout(() => {
-    window.location.href = '/';
+    if (role === 'admin') {
+      window.location.href = '/admin/dashboard.html';
+    } else {
+      window.location.href = '/index.html';
+    }
   }, 1000);
 });

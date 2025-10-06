@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seed Database - Priya's Collection</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="font-body bg-background min-h-screen flex items-center justify-center p-4">
+  <div class="card max-w-md w-full p-8">
+    <h1 class="text-2xl font-heading font-bold text-primary mb-4 text-center">Database Seeding</h1>
+    <p class="text-gray-600 mb-6 text-center">Click the button below to populate the database with sample products.</p>
+
+    <div id="status" class="mb-4 p-4 rounded-lg text-center" style="display: none;"></div>
+
+    <button id="seedBtn" class="btn-primary w-full">
+      Seed Database with Sample Products
+    </button>
+
+    <div class="mt-6 text-center">
+      <a href="/" class="text-primary hover:underline">← Back to Home</a>
+    </div>
+  </div>
+
+  <script type="module">
+    import { supabase } from './js/supabase.js';
+    import { sampleProducts } from './js/seed-data.js';
+
+    const seedBtn = document.getElementById('seedBtn');
+    const statusDiv = document.getElementById('status');
+
+    function showStatus(message, isError = false) {
+      statusDiv.style.display = 'block';
+      statusDiv.className = `mb-4 p-4 rounded-lg text-center ${isError ? 'bg-red-50 text-red-600' : 'bg-green-50 text-green-600'}`;
+      statusDiv.textContent = message;
+    }
+
+    seedBtn.addEventListener('click', async () => {
+      seedBtn.disabled = true;
+      seedBtn.textContent = 'Seeding...';
+
+      try {
+        const { data: existingProducts } = await supabase
+          .from('products')
+          .select('id')
+          .limit(1);
+
+        if (existingProducts && existingProducts.length > 0) {
+          const confirmSeed = confirm('Products already exist in the database. Do you want to add more sample products?');
+          if (!confirmSeed) {
+            seedBtn.disabled = false;
+            seedBtn.textContent = 'Seed Database with Sample Products';
+            return;
+          }
+        }
+
+        const { data, error } = await supabase
+          .from('products')
+          .insert(sampleProducts)
+          .select();
+
+        if (error) {
+          console.error('Error seeding database:', error);
+          showStatus(`Error: ${error.message}`, true);
+          seedBtn.disabled = false;
+          seedBtn.textContent = 'Seed Database with Sample Products';
+          return;
+        }
+
+        showStatus(`Successfully added ${data.length} products to the database!`);
+        seedBtn.textContent = 'Seeding Complete!';
+
+        setTimeout(() => {
+          window.location.href = '/';
+        }, 2000);
+      } catch (err) {
+        console.error('Unexpected error:', err);
+        showStatus('An unexpected error occurred', true);
+        seedBtn.disabled = false;
+        seedBtn.textContent = 'Seed Database with Sample Products';
+      }
+    });
+  </script>
+</body>
+</html>
